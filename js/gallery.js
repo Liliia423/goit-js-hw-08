@@ -1,21 +1,5 @@
 const gallery = document.querySelector('.gallery');
 
-/*const galleryItem = document.createElement('li');
-const galleryLink = document.createElement('a');
-const galleryImage = document.createElement('img');
-
-galleryItem.classList.add('gallery-item');
-galleryLink.classList.add('gallery-link');
-galleryImage.classList.add('gallery-image');
-
-galleryImage.src = 'small-image.jpg';
-galleryImage.setAttribute('data-source', 'large-image.jpg');
-galleryImage.alt = 'Image description';
-
-galleryLink.appendChild(galleryImage);
-galleryItem.appendChild(galleryLink);
-gallery.appendChild(galleryItem);*/
-
 const images = [
   {
     preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
@@ -64,11 +48,15 @@ const images = [
   },
 ];
 
+console.log(images);
+
 images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
+  //console.dir(galleryItem);
   galleryItem.classList.add('gallery-item');
 
   const galleryLink = document.createElement('a');
+
   galleryLink.classList.add('gallery-link');
   galleryLink.href = original;
 
@@ -82,49 +70,22 @@ images.forEach(({ preview, original, description }) => {
   galleryItem.appendChild(galleryLink);
   gallery.appendChild(galleryItem);
 });
+
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
 //великого зображення в модалці.
 
-/*function galleryOfImages(images) {
-  const ul = document.querySelector('.gallery');
+const galleryImages = document.querySelectorAll('.gallery img');
 
-  const stringOfImages = images
-    .map(function (image) {
-      return `<li><img src="${image.url}" alt="${image.alt}" width="240px"></li>`;
-    })
-    .join('');
+galleryImages.forEach(img => {
+  img.style.width = '360px';
+  img.style.height = '200px';
+});
 
-  ul.insertAdjacentHTML('beforeend', stringOfImages);
-  ul.style.display = 'flex';
-  ul.style.flexDirection = 'column';
-  ul.style.listStyle = 'none';
-  ul.style.gap = '16px';
-}
-
-galleryOfImages([
-  {
-    url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260',
-    alt: 'White and Black Long Fur Cat',
-  },
-  {
-    url: 'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?dpr=2&h=750&w=1260',
-    alt: 'Orange and White Koi Fish Near Yellow Koi Fish',
-  },
-  {
-    url: 'https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?dpr=2&h=750&w=1260',
-    alt: 'Group of Horses Running',
-  },
-  {
-    url: 'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
-    alt: 'Alpine Spring Meadows',
-  },
-  {
-    url: 'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
-    alt: 'Nature Landscape',
-  },
-  {
-    url: 'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
-    alt: 'Lighthouse Coast Sea',
-  },
-]);
-*/
+//заборонити завантаження по кліку
+const ul = document.querySelector('.gallery');
+ul.style.listStyle = 'none';
+ul.style.display = 'flex';
+ul.style.flexWrap = 'wrap';
+ul.style.gap = '20px 24px';
+//photo: 360*200, gap-row: 20, gap-column: 24,
+// screen: 1440*696, modal: 1440*696, photo: 1112*640
