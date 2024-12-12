@@ -48,11 +48,11 @@ const images = [
   },
 ];
 
-console.log(images);
+//console.log(images); //*масив
 
 images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
-  //console.dir(galleryItem);
+  //console.dir(galleryItem); //*об'єкти
   galleryItem.classList.add('gallery-item');
 
   const galleryLink = document.createElement('a');
@@ -74,6 +74,10 @@ images.forEach(({ preview, original, description }) => {
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
 //великого зображення в модалці.
 
+// 1) заборонити завантаження по кліку
+// 2) додати опис зображень відповідно вимог
+// 3) перенести стилі на CSS
+
 const galleryImages = document.querySelectorAll('.gallery img');
 
 galleryImages.forEach(img => {
@@ -81,7 +85,6 @@ galleryImages.forEach(img => {
   img.style.height = '200px';
 });
 
-//заборонити завантаження по кліку
 const ul = document.querySelector('.gallery');
 ul.style.listStyle = 'none';
 ul.style.display = 'flex';
