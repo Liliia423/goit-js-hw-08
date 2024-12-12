@@ -1,4 +1,8 @@
 const gallery = document.querySelector('.gallery');
+gallery.style.width = '1128px';
+gallery.style.height = '696px';
+gallery.style.margin = '24px auto';
+gallery.style.overflow = 'hidden';
 
 const images = [
   {
@@ -52,7 +56,7 @@ const images = [
 
 images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
-  //console.dir(galleryItem); //*об'єкти
+  //console.dir(galleryItem); //*об'єкти перевірено
   galleryItem.classList.add('gallery-item');
 
   const galleryLink = document.createElement('a');
@@ -71,14 +75,24 @@ images.forEach(({ preview, original, description }) => {
   gallery.appendChild(galleryItem);
 });
 
+const galleryLinks = document.querySelectorAll('.gallery-link');
+
+galleryLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    //alert('download blocked'); перевірено
+  });
+});
+
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
 //великого зображення в модалці.
 
-// 1) заборонити завантаження по кліку
+// 1) + заборонити завантаження по кліку
 // 2) додати опис зображень відповідно вимог
-// 3) перенести стилі на CSS
+// 3) + перенести стилі на CSS
 
-const galleryImages = document.querySelectorAll('.gallery img');
+// ========== Стилізація галереї
+/*const galleryImages = document.querySelectorAll('.gallery img');
 
 galleryImages.forEach(img => {
   img.style.width = '360px';
@@ -89,6 +103,6 @@ const ul = document.querySelector('.gallery');
 ul.style.listStyle = 'none';
 ul.style.display = 'flex';
 ul.style.flexWrap = 'wrap';
-ul.style.gap = '20px 24px';
+ul.style.gap = '20px 24px';*/
 //photo: 360*200, gap-row: 20, gap-column: 24,
 // screen: 1440*696, modal: 1440*696, photo: 1112*640

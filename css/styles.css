@@ -1,0 +1,41 @@
+.gallery {
+  list-style: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 24px;
+}
+
+.gallery-image {
+  height: 200px;
+  object-fit: cover;
+}
+/*Загальний порядок властивостей у CSS:
+
+========== Властивості позиціювання та розташування:
+- position
+- top, right, bottom, left
+- z-index
+
+========== Властивості блочної моделі:
+- display
+- flex-direction, flex-wrap, align-items, justify-content, gap
+- width, height, max-width, max-height, min-width, min-height
+- margin, padding
+- border, border-radius
+- box-shadow
+
+========== Типографіка:
+- font, font-size, font-weight, line-height, text-align
+- color, letter-spacing, word-spacing, text-shadow
+
+========== Фон і зображення:
+- background, background-color, background-image, background-size, background-position
+
+========== Інше:
+- opacity, visibility, cursor, transition, transform*/
