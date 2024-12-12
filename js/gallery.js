@@ -1,7 +1,8 @@
 const gallery = document.querySelector('.gallery');
-gallery.style.width = '1128px';
+gallery.style.width = '1440px';
 gallery.style.height = '696px';
-gallery.style.margin = '24px auto';
+gallery.style.margin = '0 auto';
+gallery.style.padding = '24px 156px';
 gallery.style.overflow = 'hidden';
 
 const images = [

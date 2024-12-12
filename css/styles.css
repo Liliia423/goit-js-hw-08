@@ -1,18 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
 .gallery {
   list-style: none;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-  justify-content: center;
+  margin: 0;
+  /*padding: 0;*/
+  justify-content: space-between;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   column-gap: 20px;
   row-gap: 24px;
+  width: 1440px;
+}
+
+.gallery-item {
+  max-height: 200px;
 }
 
 .gallery-image {
   height: 200px;
+  width: 360px;
   object-fit: cover;
 }
 /*Загальний порядок властивостей у CSS:
