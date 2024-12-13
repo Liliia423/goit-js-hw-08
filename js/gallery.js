@@ -3,7 +3,7 @@ gallery.style.width = '1440px';
 gallery.style.height = '696px';
 gallery.style.margin = '0 auto';
 gallery.style.padding = '24px 156px';
-gallery.style.overflow = 'hidden';
+//gallery.style.overflow = 'hidden';
 
 const images = [
   {
@@ -84,6 +84,16 @@ galleryLinks.forEach(link => {
     //alert('download blocked'); перевірено
   });
 });
+// ========== Modal window ==========
+// додати перевірку, чи клікнуто по зображенню
+//делегування події щоб забезпечити обробку групи елементів (зображень)
+const ul = document.querySelector('.gallery');
+ul.addEventListener('click', selectImage);
+
+function selectImage(event) {
+  console.log(event.target);
+  const previewImage = event.target.preview;
+}
 
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
 //великого зображення в модалці.
@@ -104,6 +114,6 @@ const ul = document.querySelector('.gallery');
 ul.style.listStyle = 'none';
 ul.style.display = 'flex';
 ul.style.flexWrap = 'wrap';
-ul.style.gap = '20px 24px';*/
+ul.style.gap = '20px 24px'; вилазить на 4px посилання*/
 //photo: 360*200, gap-row: 20, gap-column: 24,
 // screen: 1440*696, modal: 1440*696, photo: 1112*640
