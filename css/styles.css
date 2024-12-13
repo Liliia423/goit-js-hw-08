@@ -1,3 +1,7 @@
+/*body {
+  background-color: initial !important;
+}*/
+
 .gallery {
   list-style: none;
   justify-content: space-between;
@@ -14,12 +18,14 @@
   align-items: center;
   max-width: 360px;
   margin: 0 auto;
+  outline: none;
 }
 
 /* ========== обгортка для постлання */
 .gallery-link {
   display: inline-block;
   text-decoration: none;
+  outline: none;
   line-height: 0;
 }
 
@@ -27,6 +33,10 @@
   height: 200px;
   width: 360px;
   object-fit: cover;
+}
+
+.basicLightbox {
+  background-color: rgba(46, 47, 66, 0.8) !important;
 }
 
 /*Загальний порядок властивостей у CSS:

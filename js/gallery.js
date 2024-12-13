@@ -4,6 +4,7 @@ gallery.style.height = '696px';
 gallery.style.margin = '0 auto';
 gallery.style.padding = '24px 156px';
 //gallery.style.overflow = 'hidden';
+//const body = document.querySelector('.container');
 
 const images = [
   {
@@ -74,31 +75,93 @@ images.forEach(({ preview, original, description }) => {
   galleryItem.appendChild(galleryLink);
   gallery.appendChild(galleryItem);
 });
-
+// ========== Modal window - 1 ==========
 const galleryLinks = document.querySelectorAll('.gallery-link');
 
-galleryLinks.forEach(link => {
+/*galleryLinks.forEach(link => {
   link.addEventListener('click', event => {
     event.preventDefault();
     //alert('download blocked'); перевірено
+    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
+
+    basicLightbox
+      .create(
+        `
+        <div style="width: 1440px; height: 696px; background-color: rgba(46, 47, 66, 0.8); display: flex; align-items: center; justify-content: center;">
+          <img width="1112" height="640" src="${largeImageSrc}">
+        </div>
+        `
+      )
+      .show();
+  });
+});*/
+// ========== Modal window - 2 ==========
+/*galleryLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+
+    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
+
+    const instance = basicLightbox.create(`
+        <img 
+          width="1112" 
+          height="640" 
+          src="${largeImageSrc}" 
+          
+        >
+    `);
+
+    instance.show();
+  });
+});*/
+
+// ========== Modal window - 3 ==========
+galleryLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+
+    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
+
+    const instance = basicLightbox.create(
+      `
+        <img 
+          src="${largeImageSrc}" 
+          alt="Large Image"
+          style="width: 1112px; height: 640px; object-fit: cover; display: block; margin: auto; border-radius: 8px;"
+        >
+    `,
+      {
+        className: 'custom-modal',
+      }
+    );
+
+    instance.show();
+
+    const modalElement = document.querySelector('.basicLightbox');
+    modalElement.style.width = '1440px';
+    modalElement.style.height = '696px';
+    // ========== чомусь не працює ==========
+    //modalElement.style.backgroundColor = 'rgba(46, 47, 66, 0.8)';
+    //modalElement.style.display = 'flex';
+    //modalElement.style.alignItems = 'center';
+    //modalElement.style.justifyContent = 'center';
+    //modalElement.style.margin = 'auto';
   });
 });
-// ========== Modal window ==========
-// + додати перевірку, чи клікнуто по зображенню
-// + делегування події щоб забезпечити обробку групи елементів (зображень)
-const ul = document.querySelector('.gallery');
-ul.addEventListener('click', clickImage);
 
+/*const ul = document.querySelector('.gallery');
+ul.addEventListener('click', clickImage);
+style="background-color: rgba(46, 47, 66, 0.8); display: block; margin: auto;"
 function clickImage(event) {
   const clickedElement = event.target;
 
   if (clickedElement.nodeName === 'IMG') {
     const largeImageSrc = clickedElement.getAttribute('data-source');
     console.log(largeImageSrc);
-  } /*else {
+  } else {
     console.log('Bad shot ! 💥');
-  }*/
-}
+  }
+}*/
 
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
 //великого зображення в модалці.
