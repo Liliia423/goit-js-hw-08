@@ -59,13 +59,12 @@ images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
   //console.dir(galleryItem); //*об'єкти перевірено
   galleryItem.classList.add('gallery-item');
-
   const galleryLink = document.createElement('a');
-
   galleryLink.classList.add('gallery-link');
   galleryLink.href = original;
 
   const galleryImage = document.createElement('img');
+  //console.log(galleryImage.tagName); // IMG
   galleryImage.classList.add('gallery-image');
   galleryImage.src = preview;
   galleryImage.setAttribute('data-source', original);
@@ -85,14 +84,20 @@ galleryLinks.forEach(link => {
   });
 });
 // ========== Modal window ==========
-// додати перевірку, чи клікнуто по зображенню
-//делегування події щоб забезпечити обробку групи елементів (зображень)
+// + додати перевірку, чи клікнуто по зображенню
+// + делегування події щоб забезпечити обробку групи елементів (зображень)
 const ul = document.querySelector('.gallery');
-ul.addEventListener('click', selectImage);
+ul.addEventListener('click', clickImage);
 
-function selectImage(event) {
-  console.log(event.target);
-  const previewImage = event.target.preview;
+function clickImage(event) {
+  const clickedElement = event.target;
+
+  if (clickedElement.nodeName === 'IMG') {
+    const largeImageSrc = clickedElement.getAttribute('data-source');
+    console.log(largeImageSrc);
+  } /*else {
+    console.log('Bad shot ! 💥');
+  }*/
 }
 
 //description — текстовий опис зображення, для атрибута alt малого зображення та підпису
