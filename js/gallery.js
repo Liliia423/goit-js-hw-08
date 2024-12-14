@@ -54,7 +54,7 @@ const images = [
   },
 ];
 
-//console.log(images); //*масив
+//console.log(images); //*масив перевірено
 
 images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
@@ -75,10 +75,40 @@ images.forEach(({ preview, original, description }) => {
   galleryItem.appendChild(galleryLink);
   gallery.appendChild(galleryItem);
 });
-// ========== Modal window - 1 ==========
+
+// ========== Modal window ==========
 const galleryLinks = document.querySelectorAll('.gallery-link');
 
-/*galleryLinks.forEach(link => {
+galleryLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+
+    const largeImageLink = link.querySelector('img').getAttribute('data-source');
+    console.log(largeImageLink);
+    const instance = basicLightbox.create(
+      `
+        <div>
+          <img src="${largeImageLink}" class="modal-image">
+        </div>
+      `,
+      {
+        onShow: instance => {
+          const largeImageModalPreview = instance.element().querySelector('.modal-image');
+          largeImageModalPreview.addEventListener('click', () => {
+            instance.close();
+          });
+        },
+      }
+    );
+
+    instance.show();
+  });
+});
+
+// ========== Modal window - 1 ==========
+/*const galleryLinks = document.querySelectorAll('.gallery-link');
+
+galleryLinks.forEach(link => {
   link.addEventListener('click', event => {
     event.preventDefault();
     //alert('download blocked'); перевірено
@@ -114,8 +144,9 @@ const galleryLinks = document.querySelectorAll('.gallery-link');
     instance.show();
   });
 });*/
-
 // ========== Modal window - 3 ==========
+/*const galleryLinks = document.querySelectorAll('.gallery-link');
+
 galleryLinks.forEach(link => {
   link.addEventListener('click', event => {
     event.preventDefault();
@@ -126,8 +157,8 @@ galleryLinks.forEach(link => {
       `
         <img 
           src="${largeImageSrc}" 
-          alt="Large Image"
-          style="width: 1112px; height: 640px; object-fit: cover; display: block; margin: auto; border-radius: 8px;"
+          alt="${description}"   
+         
         >
     `,
       {
@@ -136,18 +167,8 @@ galleryLinks.forEach(link => {
     );
 
     instance.show();
-
-    const modalElement = document.querySelector('.basicLightbox');
-    modalElement.style.width = '1440px';
-    modalElement.style.height = '696px';
-    // ========== чомусь не працює ==========
-    //modalElement.style.backgroundColor = 'rgba(46, 47, 66, 0.8)';
-    //modalElement.style.display = 'flex';
-    //modalElement.style.alignItems = 'center';
-    //modalElement.style.justifyContent = 'center';
-    //modalElement.style.margin = 'auto';
   });
-});
+});*/
 
 /*const ul = document.querySelector('.gallery');
 ul.addEventListener('click', clickImage);
