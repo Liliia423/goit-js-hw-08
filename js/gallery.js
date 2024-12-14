@@ -1,11 +1,3 @@
-const gallery = document.querySelector('.gallery');
-gallery.style.width = '1440px';
-gallery.style.height = '696px';
-gallery.style.margin = '0 auto';
-gallery.style.padding = '24px 156px';
-//gallery.style.overflow = 'hidden';
-//const body = document.querySelector('.container');
-
 const images = [
   {
     preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
@@ -54,18 +46,18 @@ const images = [
   },
 ];
 
-//console.log(images); //*масив перевірено
+const gallery = document.querySelector('.gallery');
+const fragment = document.createDocumentFragment();
 
 images.forEach(({ preview, original, description }) => {
   const galleryItem = document.createElement('li');
-  //console.dir(galleryItem); //*об'єкти перевірено
   galleryItem.classList.add('gallery-item');
+
   const galleryLink = document.createElement('a');
   galleryLink.classList.add('gallery-link');
   galleryLink.href = original;
 
   const galleryImage = document.createElement('img');
-  //console.log(galleryImage.tagName); // IMG
   galleryImage.classList.add('gallery-image');
   galleryImage.src = preview;
   galleryImage.setAttribute('data-source', original);
@@ -73,136 +65,33 @@ images.forEach(({ preview, original, description }) => {
 
   galleryLink.appendChild(galleryImage);
   galleryItem.appendChild(galleryLink);
-  gallery.appendChild(galleryItem);
+  fragment.appendChild(galleryItem);
 });
 
-// ========== Modal window ==========
-const galleryLinks = document.querySelectorAll('.gallery-link');
+gallery.appendChild(fragment);
 
-galleryLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
+// ========== Modal window using Event Delegation ==========
+gallery.addEventListener('click', event => {
+  event.preventDefault();
 
-    const largeImageLink = link.querySelector('img').getAttribute('data-source');
-    console.log(largeImageLink);
-    const instance = basicLightbox.create(
-      `
-        <div>
-          <img src="${largeImageLink}" class="modal-image">
-        </div>
-      `,
-      {
-        onShow: instance => {
-          const largeImageModalPreview = instance.element().querySelector('.modal-image');
-          largeImageModalPreview.addEventListener('click', () => {
-            instance.close();
-          });
-        },
-      }
-    );
+  if (event.target.nodeName !== 'IMG') return;
 
-    instance.show();
+  const largeImageSrc = event.target.getAttribute('data-source');
+  console.log(largeImageSrc);
+  const instance = basicLightbox.create(
+    `
+      <img 
+        src="${largeImageSrc}" 
+        class="modal-image"
+        margin: auto; object-fit: cover;">
+    `
+  );
+
+  instance.show();
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      instance.close();
+    }
   });
 });
-
-// ========== Modal window - 1 ==========
-/*const galleryLinks = document.querySelectorAll('.gallery-link');
-
-galleryLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-    //alert('download blocked'); перевірено
-    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
-
-    basicLightbox
-      .create(
-        `
-        <div style="width: 1440px; height: 696px; background-color: rgba(46, 47, 66, 0.8); display: flex; align-items: center; justify-content: center;">
-          <img width="1112" height="640" src="${largeImageSrc}">
-        </div>
-        `
-      )
-      .show();
-  });
-});*/
-// ========== Modal window - 2 ==========
-/*galleryLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-
-    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
-
-    const instance = basicLightbox.create(`
-        <img 
-          width="1112" 
-          height="640" 
-          src="${largeImageSrc}" 
-          
-        >
-    `);
-
-    instance.show();
-  });
-});*/
-// ========== Modal window - 3 ==========
-/*const galleryLinks = document.querySelectorAll('.gallery-link');
-
-galleryLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-
-    const largeImageSrc = link.querySelector('img').getAttribute('data-source');
-
-    const instance = basicLightbox.create(
-      `
-        <img 
-          src="${largeImageSrc}" 
-          alt="${description}"   
-         
-        >
-    `,
-      {
-        className: 'custom-modal',
-      }
-    );
-
-    instance.show();
-  });
-});*/
-
-/*const ul = document.querySelector('.gallery');
-ul.addEventListener('click', clickImage);
-style="background-color: rgba(46, 47, 66, 0.8); display: block; margin: auto;"
-function clickImage(event) {
-  const clickedElement = event.target;
-
-  if (clickedElement.nodeName === 'IMG') {
-    const largeImageSrc = clickedElement.getAttribute('data-source');
-    console.log(largeImageSrc);
-  } else {
-    console.log('Bad shot ! 💥');
-  }
-}*/
-
-//description — текстовий опис зображення, для атрибута alt малого зображення та підпису
-//великого зображення в модалці.
-
-// 1) + заборонити завантаження по кліку
-// 2) додати опис зображень відповідно вимог
-// 3) + перенести стилі на CSS
-
-// ========== Стилізація галереї
-/*const galleryImages = document.querySelectorAll('.gallery img');
-
-galleryImages.forEach(img => {
-  img.style.width = '360px';
-  img.style.height = '200px';
-});
-
-const ul = document.querySelector('.gallery');
-ul.style.listStyle = 'none';
-ul.style.display = 'flex';
-ul.style.flexWrap = 'wrap';
-ul.style.gap = '20px 24px'; вилазить на 4px посилання*/
-//photo: 360*200, gap-row: 20, gap-column: 24,
-// screen: 1440*696, modal: 1440*696, photo: 1112*640

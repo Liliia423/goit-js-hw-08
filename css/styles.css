@@ -3,6 +3,10 @@
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
+  width: 1440px;
+  height: 696px;
+  margin: 0 auto;
+  padding: 24px 156px;
   column-gap: 24px;
   row-gap: 24px;
 }
@@ -31,38 +35,12 @@
 }
 
 .basicLightbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-fit: cover;
   background-color: rgba(46, 47, 66, 0.8);
 }
 
-.modal-image {
-  width: 1112px;
-  height: 640px;
+.basicLightbox__placeholder img.modal-image:first-child:last-child {
+  width: 1112px !important;
+  height: 640px !important;
+  object-fit: cover;
+  margin: auto;
 }
-/*Загальний порядок властивостей у CSS:
-
-========== Властивості позиціювання та розташування:
-- position
-- top, right, bottom, left
-- z-index
-
-========== Властивості блочної моделі:
-- display
-- flex-direction, flex-wrap, align-items, justify-content, gap
-- width, height, max-width, max-height, min-width, min-height
-- margin, padding
-- border, border-radius
-- box-shadow
-
-========== Типографіка:
-- font, font-size, font-weight, line-height, text-align
-- color, letter-spacing, word-spacing, text-shadow
-
-========== Фон і зображення:
-- background, background-color, background-image, background-size, background-position
-
-========== Інше:
-- opacity, visibility, cursor, transition, transform*/
